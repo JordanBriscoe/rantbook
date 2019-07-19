@@ -6,6 +6,7 @@ let port = 3000
 let server = express()
 
 server.use(bp.json())
+server.use(cors())
 
 import RantController from './controllers/RantController.js'
 import TopicController from './controllers/TopicController.js'
