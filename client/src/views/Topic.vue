@@ -1,15 +1,16 @@
 <template>
   <div class="topic">
-    <h1>{{topic.name}}</h1>
-    <!-- title
+    <div v-for="rant in rants">
+      <h1>{{topic.name}}</h1>
+      <!-- title
 author
 preview -->
-    <h5></h5>
-    <!-- <p>{{topic.}}</p> -->
-
+      <!-- <h3>{{rant.title}}</h3> -->
+      <!-- <p>{{topic.}}</p> -->
+    </div>
   </div>
 </template>
-
+<!-- NOTE UPDATE TRELLO  -->
 
 <script>
   export default {
@@ -22,6 +23,7 @@ preview -->
         topicId: this.$route.params.topicId
       }
       this.$store.dispatch('getTopicById', dataToSend)
+      this.$store.dispatch('getRantsByTopicId', dataToSend)
     },
     computed: {
       topic() {
