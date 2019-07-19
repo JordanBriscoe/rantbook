@@ -33,6 +33,16 @@ export default class RantController {
         }
     }
 
+    async getRantById(req, res, next) {
+        try {
+            let rant = await _rantService.findById(req.params.rantId)
+            res.send(rant)
+            console.log('getting a single rant?', req.params)
+        } catch (err) {
+            next(err)
+        }
+    }
+
     async deleteRant(req, res, next) {
         try {
             let deleteRant = await _rantService.findByIdAndDelete(req.params.rantId)
@@ -54,10 +64,8 @@ export default class RantController {
         console.log("made it to constructor")
         this.router = express.Router()
             .get('', this.getRant)
-            .get('/:topicId', this.getRantsById)
-            // .get('/:bloggersId/bloggers', this.getAllBloggers)
-            // .get('', this.getBloggerByTag)
-            // .get('/:blogId', this.getBloggers)
+            .get('/:rantId', this.getRantById)
+            .get('/topic/:topicId', this.getRantsById)
             .put('/:rantId', this.editRant)
             .post('', this.createRant)
             .delete('/:rantId', this.deleteRant)
