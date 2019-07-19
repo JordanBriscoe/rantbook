@@ -1,15 +1,19 @@
 <template>
-    <div class="home row">
+    <div class="container-fluid">
         <h1>This is our Home Page</h1>
-        <div v-for="topic in topics" @click="viewTopic(topic)">
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{topic.name}}</h5>
+
+        <div class="home row">
+            <div v-for="topic in topics" @click="viewTopic(topic)">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{topic.name}}</h5>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </template>
 

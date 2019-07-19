@@ -1,5 +1,6 @@
 <template>
-  <div id="app">
+  <div id="app" class="container">
+
     <div id="nav">
       <!-- //this is where the multiple topics will be viewed at first! -->
       <router-link to="/">Home</router-link>|
@@ -10,7 +11,7 @@
     <router-view />
   </div>
 </template>
-
+</div>
 <style>
   #app {
     font-family: 'Electrolize', sans-serif;
