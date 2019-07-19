@@ -1,7 +1,9 @@
 <template>
   <div class="topic">
+    <h1>{{topic.name}}</h1>
     <div v-for="rant in rants">
-      <h1>{{topic.name}}</h1>
+      <h4>{{rant.title}}</h4>
+      <p>{{rant.author}}</p>
       <!-- title
 author
 preview -->

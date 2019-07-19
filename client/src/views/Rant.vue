@@ -16,6 +16,11 @@
     data() {
       return {}
     },
+    mounted() {
+      let dataToSend = {
+        rantId: this.$route.params.rantId
+      }
+    },
     computed: {},
     methods: {},
     components: {}

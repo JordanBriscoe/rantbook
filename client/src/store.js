@@ -50,7 +50,7 @@ export default new Vuex.Store({
     },
     async getRantsByTopicId({ dispatch, commit }, payload) {
       try {
-        let res = await api.get('rants/' + payload.topicId)
+        let res = await api.get('rants/topic/' + payload.topicId)
         commit('setActiveRants', res.data)
       } catch (error) {
         console.error(error)
