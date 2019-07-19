@@ -8,11 +8,10 @@ let server = express()
 server.use(bp.json())
 
 import RantController from './controllers/RantController.js'
+import TopicController from './controllers/TopicController.js'
 
-server.use('/api/', new RantController().router)
-server.use('*', (req, res, next) => {
-    console.log("bailed out: ")
-})
+server.use('/api/rant', new RantController().router)
+server.use('/api/topic', new TopicController().router)
 
 server.use((error, req, res, next) => {
     res.status(error.status || 400).send(error)
