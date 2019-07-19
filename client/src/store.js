@@ -17,15 +17,31 @@ export default new Vuex.Store({
 
   },
   mutations: {
+    setTopics(state, data) {
+      state.topics = data
+    },
+    setactiveTopic(state, data) {
+      state.activiceTopic = data
+    }
 
   },
   actions: {
     async getTopics({ dispatch, commit }) {
       try {
-        let res = await api.get('topics') ||
-          commit("setTopics", res.data)
-      } catch{ commit[] }
-    }
+        let res = await api.get('topics')
+        commit("setTopics", res.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async getTopicById({ dispatch, commit }, payload) {
+      try {
+        let res = await api.get('topics/' + payload.topicId)
+        commit('setactiveTopic', res.data)
+      } catch (error) {
+        console.error(error)
+      }
 
+    },
   }
 })
