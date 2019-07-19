@@ -1,5 +1,6 @@
 import express from 'express'
 import bp from 'body-parser'
+import cors from 'cors'
 import './db/dbconfig'
 let port = 3000
 
@@ -11,8 +12,8 @@ server.use(cors())
 import RantController from './controllers/RantController.js'
 import TopicController from './controllers/TopicController.js'
 
-server.use('/api/rant', new RantController().router)
-server.use('/api/topic', new TopicController().router)
+server.use('/api/rants', new RantController().router)
+server.use('/api/topics', new TopicController().router)
 
 server.use((error, req, res, next) => {
     res.status(error.status || 400).send(error)
