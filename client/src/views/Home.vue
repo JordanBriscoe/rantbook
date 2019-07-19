@@ -1,7 +1,7 @@
 <template>
-    <h1>This is our Home Page</h1>
-    <div class="row">
-        <div class="home" v-for="topic in topics" @click="viewTopic(topic)">
+    <div class="home row">
+        <h1>This is our Home Page</h1>
+        <div v-for="topic in topics" @click="viewTopic(topic)">
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card-body">
