@@ -21,9 +21,19 @@ export default class TopicController {
         }
     }
 
+    async getTopicById(req, res, next) {
+        try {
+            let topic = await _topicService.findById(req.params.topicId)
+            res.send(topic)
+        } catch (error) {
+            next(error)
+        }
+    }
+
     constructor() {
         this.router = express.Router()
             .get('', this.getTopic)
+            .get('/:topicId', this.getTopicById)
             .post('', this.createTopic)
     }
 }
