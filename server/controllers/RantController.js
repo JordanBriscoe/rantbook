@@ -16,6 +16,7 @@ export default class RantController {
         try {
             let rant = await _rantService.find({ topic: req.params.topicId })
             res.send(rant)
+            console.log("is this working?")
         } catch (error) {
             next(error)
         }
@@ -53,7 +54,7 @@ export default class RantController {
         console.log("made it to constructor")
         this.router = express.Router()
             .get('', this.getRant)
-            .get('/:rantId', this.getRantsById)
+            .get('/:topicId', this.getRantsById)
             // .get('/:bloggersId/bloggers', this.getAllBloggers)
             // .get('', this.getBloggerByTag)
             // .get('/:blogId', this.getBloggers)
