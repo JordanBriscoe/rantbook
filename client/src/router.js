@@ -15,7 +15,7 @@ export default new Router({
       path: '/topics/:topicId',
       name: 'topic',
       component: function () {
-        return import('./views/Topics.vue')//NOTE need to make a topics view
+        return import('./views/Home.vue')//NOTE need to make a topics view
       }
     },
     {
