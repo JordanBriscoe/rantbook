@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import { platform } from 'os';
+import router from './router';
 
 
 Vue.use(Vuex)
@@ -15,7 +16,7 @@ export default new Vuex.Store({
     topics: [],
     activeTopic: {},
     activeRants: [],
-
+    deleteRant: {}
 
   },
   mutations: {
@@ -49,11 +50,20 @@ export default new Vuex.Store({
     },
     async getRantsByTopicId({ dispatch, commit }, payload) {
       try {
-        let res = await api.get('rants/' + payload)
+        let res = await api.get('rants/' + payload.topicId)
         commit('setActiveRants', res.data)
       } catch (error) {
         console.error(error)
       }
     },
+    async deleteRantById({ dispatch, commit }, payload) {
+      try {
+        let res = await api.delete('rant/' + payload)
+        router.push({ name: 'rant' })
+        console.log(res)
+      } catch (error) {
+        console.error(error)
+      }
+    }
   }
 })
