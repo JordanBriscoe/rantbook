@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import { platform } from 'os';
 
 
 Vue.use(Vuex)
@@ -12,7 +13,9 @@ let api = axios.create({
 export default new Vuex.Store({
   state: {
     topics: [],
-    activiceTopic: {},
+    activeTopic: {},
+    activeRants: [],
+
 
   },
   mutations: {
@@ -20,7 +23,10 @@ export default new Vuex.Store({
       state.topics = data
     },
     setactiveTopic(state, data) {
-      state.activiceTopic = data
+      state.activeTopic = data
+    },
+    setActiveRants(state, data) {
+      state.activeRants = data
     }
 
   },
@@ -40,7 +46,14 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
-
+    },
+    async getRantsByTopicId({ dispatch, commit }, payload) {
+      try {
+        let res = await api.get('rants/' + payload)
+        commit('setActiveRants', res.data)
+      } catch (error) {
+        console.error(error)
+      }
     },
   }
 })

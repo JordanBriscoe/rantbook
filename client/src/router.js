@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 
+
+
 Vue.use(Router)
 
 export default new Router({
@@ -15,7 +17,7 @@ export default new Router({
       path: '/topics/:topicId',
       name: 'topic',
       component: function () {
-        return import('./views/Home.vue')//NOTE need to make a topics view
+        return import('./views/Topic.vue')//NOTE need to make a topics view
       }
     },
     {
