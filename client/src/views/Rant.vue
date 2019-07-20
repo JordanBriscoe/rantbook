@@ -26,6 +26,7 @@
     <div class="comment" v-for="comment in comments">
       <h3>{{comment.author}}</h3>
       <h4>{{comment.content}}</h4>
+      <button class="btn btn- btn-outline-danger" @click="deleteComment(comment)"> Delete Comment</button>
     </div>
 
   </div>
@@ -68,6 +69,9 @@
       },
       addComment() {
         this.$store.dispatch('addComment', this.newComment)
+      },
+      deleteComment(remove) {
+        this.$store.dispatch('deleteComment', remove)
       }
     },
 

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import router from './router';
+import { stat } from 'fs';
 
 
 Vue.use(Vuex)
@@ -34,6 +35,12 @@ export default new Vuex.Store({
     },
     setComments(state, data) {
       state.comments = data
+    },
+    deleteComment(state, data) {
+      // find matching element
+      let targetIndex = state.comments.findIndex(curr => curr._id === data._id)
+      // remove element at target index
+      state.comments.splice(targetIndex, 1)
     }
 
   },
@@ -101,8 +108,19 @@ export default new Vuex.Store({
     async getCommentsByRant({ dispatch, commit }, payload) {
       try {
         let res = await api.get('rants/' + payload.rantId + '/comments')
+        commit('setComments', res.data)
       }
       catch (error) {
+        console.error(error)
+      }
+    },
+    async deleteComment({ dispatch, commit }, payload) {
+      try {
+        console.log(payload)
+        let res = await api.delete('comments/' + payload._id)
+        commit('deleteComment', payload)
+        // router.push({ name: 'rant' })
+      } catch (error) {
         console.error(error)
       }
     }
