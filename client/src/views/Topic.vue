@@ -1,7 +1,7 @@
 <template>
   <div class="topic">
     <h1>{{topic.name}}</h1>
-    <div v-for="rant in rants">
+    <div v-for="rant in rants" @click="viewRant(rant)">
       <h4>{{rant.title}}</h4>
       <p>{{rant.author}}</p>
       <!-- title
@@ -35,7 +35,11 @@ preview -->
         return this.$store.state.activeRants
       }
     },
-    methods: {},
+    methods: {
+      viewRant(rant) {
+        this.$router.push({ name: 'rant', params: { rantId: rant._id } })
+      }
+    },
 
     components: {}
   }

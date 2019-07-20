@@ -21,6 +21,22 @@ export default new Router({
       }
     },
     {
+      path: '/rants/:rantId',
+      name: 'rant',
+      component: function () {
+        return import('./views/Rant.vue')//NOTE need to make a topics view
+      }
+    },
+    // {
+    //   path: '/topics/:topicId',
+    //   name: 'topic',
+    //   component: function () {
+    //     return import('./views/Topic.vue')//NOTE need to make a topics view
+    //   }
+    // },
+
+
+    {
       path: '*',
       redirect: '/Home'
     }

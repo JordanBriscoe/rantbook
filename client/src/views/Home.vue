@@ -32,8 +32,8 @@
                 </div>
                 <div class="form-group col-6">
                     <label for="description">Description</label>
-                    <input type="text" name="description" class="form-control" id="description"
-                        placeholder="Enter a description" v-model="newRant.description">
+                    <textarea rows="5" cols="50" type="text" name="description" class="form-control" id="description"
+                        placeholder="Enter a description" v-model="newRant.description"></textarea>
                 </div>
                 <button type="submit" class="btn btn-warning col-4 offset-4">Submit</button>
             </form>
@@ -63,8 +63,9 @@
             viewTopic(topic) {
                 this.$router.push({ name: 'topic', params: { topicId: topic._id } })
             },
-            addRant() {
+            addRant(event) {
                 this.$store.dispatch('addRant', this.newRant)
+                this.newRant = {}
             }
         },
         components: {}
