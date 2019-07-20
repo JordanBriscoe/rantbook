@@ -1,5 +1,6 @@
 import express from 'express'
 import _rantService from '../services/RantService.js'
+import _commentsService from '../services/CommentsService.js'
 
 export default class RantController {
 
@@ -55,12 +56,22 @@ export default class RantController {
     async editRant(req, res, next) {
         try {
             let editRant = await _rantService.findByIdAndUpdate(req.params.rantId, req.body)
-            res.send(rant)
+            res.send(editRant)
         } catch (error) {
             next(error)
         }
     }
-
+    async getCommentsByRantId(req, res, next) {
+        try {
+            let comments = await _commentsService.find({
+                rant: req.params.rantId
+            })
+            res.send(comments)
+            console.log("OI!? THIS WORKIN!!??")
+        } catch (error) {
+            next(error)
+        }
+    }
     constructor() {
         console.log("made it to constructor")
         this.router = express.Router()
@@ -70,5 +81,7 @@ export default class RantController {
             .put('/:rantId', this.editRant)
             .post('', this.createRant)
             .delete('/:rantId', this.deleteRant)
+            .get('/:rantId/comments', this.getCommentsByRantId)
+
     }
 }

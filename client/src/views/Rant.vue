@@ -23,8 +23,9 @@
       <button class=" mt-1 btn btn-outline-warning border border-dark text-body" type="submit">Submit
         Comment</button>
     </form>
-    <div class="comment" v-for="comment in rant">
+    <div class="comment" v-for="comment in comments">
       <h3>{{comment.author}}</h3>
+      <h4>{{comment.content}}</h4>
     </div>
 
   </div>
@@ -47,11 +48,15 @@
         rantId: this.$route.params.rantId
       }
       this.$store.dispatch('getRantById', dataToSend)
+      this.$store.dispatch('getCommentsByRant', dataToSend)
+
     },
     computed: {
       rant() {
         return this.$store.state.activeRant
-
+      },
+      comments() {
+        return this.$store.state.comments
       }
     },
     methods: {

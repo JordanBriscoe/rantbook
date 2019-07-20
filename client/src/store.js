@@ -15,7 +15,8 @@ export default new Vuex.Store({
     topics: [],
     activeTopic: {},
     activeRants: [],
-    activeRant: {}
+    activeRant: {},
+    comments: []
 
   },
   mutations: {
@@ -30,6 +31,9 @@ export default new Vuex.Store({
     },
     setActiveRant(state, data) {
       state.activeRant = data
+    },
+    setComments(state, data) {
+      state.comments = data
     }
 
   },
@@ -72,7 +76,7 @@ export default new Vuex.Store({
       try {
         let res = await api.get('rants/' + payload.rantId)
         commit('setActiveRant', res.data)
-        router.push({ name: 'rant' })
+        //router.push({ name: 'rant' })
         console.log(res)
       } catch (error) {
         console.error(error)
@@ -88,9 +92,20 @@ export default new Vuex.Store({
     async addComment({ dispatch, commit }, payload) {
       try {
         let res = await api.post('comments/', payload)
+        commit('setComments', res.data)
+        dispatch('getRantById', { rantId: payload.rant })
       } catch (error) {
         console.error(error)
       }
+    },
+    async getCommentsByRant({ dispatch, commit }, payload) {
+      try {
+        let res = await api.get('rants/' + payload.rantId + '/comments')
+      }
+      catch (error) {
+        console.error(error)
+      }
     }
+
   }
 })

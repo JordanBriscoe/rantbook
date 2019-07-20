@@ -11,17 +11,7 @@ export default class CommentsController {
         }
     }
 
-    async getCommmentById(req, res, next) {
-        try {
-            let comment = await _commentsService.find({
-                rant: req.params.rantId
-            })
-            res.send(comment)
-            console.log("OI!? THIS WORKIN!!??")
-        } catch (error) {
-            next(error)
-        }
-    }
+
 
     async deleteComment(req, res, next) {
         try {
@@ -35,7 +25,6 @@ export default class CommentsController {
 
     constructor() {
         this.router = express.Router()
-            .get('/rant/:rantId', this.getCommmentById)
             .post('', this.createComment)
             .delete('/:commentId', this.deleteComment)
     }
