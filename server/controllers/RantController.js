@@ -46,6 +46,7 @@ export default class RantController {
     async deleteRant(req, res, next) {
         try {
             let deleteRant = await _rantService.findByIdAndDelete(req.params.rantId)
+            res.send(deleteRant)
         } catch (error) {
             next(error)
         }
