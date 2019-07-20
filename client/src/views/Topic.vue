@@ -1,16 +1,16 @@
 <template>
   <div class="topic">
     <h1>{{topic.name}}</h1>
-    <div v-for="rant in rants" @click="viewRant(rant)">
+    <div v-if="!rants.length">
+      <p>No Rants returning to home</p>
+    </div>
+    <div v-for="rant in rants">
       <h4>{{rant.title}}</h4>
       <p>{{rant.author}}</p>
-      <!-- title
-author
-preview -->
-      <!-- <h3>{{rant.title}}</h3> -->
-      <!-- <p>{{topic.}}</p> -->
+      <button @click='viewRant(rant)' class=" booton btn btn-warning">Read DIS!!</button>
     </div>
   </div>
+
 </template>
 <!-- NOTE UPDATE TRELLO  -->
 
@@ -26,6 +26,12 @@ preview -->
       }
       this.$store.dispatch('getTopicById', dataToSend)
       this.$store.dispatch('getRantsByTopicId', dataToSend)
+      setTimeout(() => {
+        if (this.$store.state.activeRants.length <= 0) {
+          this.$router.push({ name: 'Home' })
+        }
+      }, 1500)
+
     },
     computed: {
       topic() {
@@ -38,6 +44,7 @@ preview -->
     methods: {
       viewRant(rant) {
         this.$router.push({ name: 'rant', params: { rantId: rant._id } })
+
       }
     },
 
@@ -47,5 +54,8 @@ preview -->
 
 
 <style scoped>
-
+  .booton:hover {
+    background-color: indigo;
+    color: ivory;
+  }
 </style>

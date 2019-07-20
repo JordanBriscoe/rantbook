@@ -3,7 +3,7 @@
 
     <div id="nav">
       <!-- //this is where the multiple topics will be viewed at first! -->
-      <router-link to="/">Home</router-link>|
+      <router-link to="/">Home</router-link>
       <!-- <router-link to=""> -->
       <!-- <h1>Home page for rantbook</h1> -->
 

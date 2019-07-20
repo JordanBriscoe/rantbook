@@ -62,7 +62,7 @@ export default new Vuex.Store({
       try {
         let res = await api.delete('rants/' + payload)
         commit('setActiveRant', {})
-        router.push({ name: 'topic' })
+        router.push({ name: 'topic', params: { topicId: this.state.activeTopic._id } })
         console.log(res)
       } catch (error) {
         console.error(error)
@@ -81,6 +81,13 @@ export default new Vuex.Store({
     async addRant({ dispatch, commit }, payload) {
       try {
         let res = await api.post('rants/', payload)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async addComment({ dispatch, commit }, payload) {
+      try {
+        let res = await api.post('comments/', payload)
       } catch (error) {
         console.error(error)
       }
