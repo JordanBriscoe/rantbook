@@ -21,9 +21,9 @@
                         v-model="newRant.title">
                 </div>
                 <div class="form-group col-6">
-                    <label for="author">Author</label>
-                    <input type="text" name="author" class="form-control" id="author" placeholder="Enter a author"
-                        v-model="newRant.author">
+                    <label for="image">Image</label>
+                    <input type="text" name="image" class="form-control" id="image" placeholder="Enter an image"
+                        v-model="newRant.image">
                 </div>
                 <div class="form-group d-flex col-6" v-for="(topic,index) in topics">
                     <input type="radio" :id="index" :value="topic._id" v-model="newRant.topic">
@@ -32,13 +32,12 @@
                 </div>
             </form>
         </div>
-        <div class="form-group col-6">
+        <div class="form-group col-12 ">
             <label for="description">Description</label>
             <textarea rows="5" cols="50" type="text" name="description" class="form-control" id="description"
                 placeholder="Enter a description" v-model="newRant.description"></textarea>
         </div>
-        <button type="submit" class="btn btn-warning  border border-dark col-4 offset-4"
-            @click="addRant">Submit</button>
+        <button type="submit" class="btn btn-warning  mb-4 border border-dark col-12" @click=" addRant">Submit</button>
         </form>
     </div>
 

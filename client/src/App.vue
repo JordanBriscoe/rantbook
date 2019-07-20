@@ -14,10 +14,12 @@
 </template>
 <style>
   #app {
+    border: 3px solid black;
     font-family: 'Electrolize', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
+    background-color: orange;
     color: #2c3e50;
   }
 

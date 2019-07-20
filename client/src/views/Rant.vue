@@ -1,6 +1,7 @@
 <template>
   <div class="rant">
     <!-- <h2>{{topic.name}}</h2> -->
+    <img v-if="rant.image" :src="rant.image" alt="">
     <h4>{{rant.title}}</h4>
     <p>{{rant.author}}</p>
     <p>{{rant.description}}</p>
@@ -81,5 +82,8 @@
 
 
 <style scoped>
-
+  img {
+    height: 400px;
+    width: 400px;
+  }
 </style>

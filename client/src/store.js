@@ -17,7 +17,8 @@ export default new Vuex.Store({
     activeTopic: {},
     activeRants: [],
     activeRant: {},
-    comments: []
+    comments: [],
+    activeDoots: []
 
   },
   mutations: {
@@ -33,6 +34,9 @@ export default new Vuex.Store({
     setActiveRant(state, data) {
       state.activeRant = data
     },
+    setActiveDoots(state, data) {
+      state.activeDoots = data
+    },
     setComments(state, data) {
       state.comments = data
     },
@@ -41,7 +45,8 @@ export default new Vuex.Store({
       let targetIndex = state.comments.findIndex(curr => curr._id === data._id)
       // remove element at target index
       state.comments.splice(targetIndex, 1)
-    }
+    },
+
 
   },
   actions: {
@@ -120,6 +125,30 @@ export default new Vuex.Store({
         let res = await api.delete('comments/' + payload._id)
         commit('deleteComment', payload)
         // router.push({ name: 'rant' })
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async getRantDoots({ dispatch, commit }, payload) {
+      try {
+        let res = await api.get('votes/rant/' + payload)
+        commit('setActiveDoots', res.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async updoot({ dispatch, commit }, payload) {
+      try {
+        let res = await api.post('votes/', payload)
+        dispatch('getRantDoots', payload.rant)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async downdoot({ dispatch, commit }, payload) {
+      try {
+        let res = await api.post('votes/', payload)
+        dispatch('getRantDoots', payload.rant)
       } catch (error) {
         console.error(error)
       }
